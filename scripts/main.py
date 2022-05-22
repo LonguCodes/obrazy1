@@ -149,11 +149,11 @@ def image_close(file, radius, logic):
     for x, y in tqdm(positions):
         pixels = image[x - mask_start: x + mask_end + 1, y - mask_start:y + mask_end + 1]
 
-        new_image[x, y] = pixels[mask].min()
+        new_image[x, y] = pixels[mask].max()
     t2 = new_image.copy()
     for x, y in tqdm(positions):
         pixels = t2[x - mask_start: x + mask_end + 1, y - mask_start:y + mask_end + 1]
-        new_image[x, y] = pixels[mask].max()
+        new_image[x, y] = pixels[mask].min()
 
     new_image_raw = Image.fromarray(new_image)
     new_image_raw.save('out/close_o.jpg')
